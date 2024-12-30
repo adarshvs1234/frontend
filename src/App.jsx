@@ -1,10 +1,11 @@
 import React from 'react'
-import Home from './pages/Home'
+
+import Index from './route/Index'
 
 const App = () => {
   return (
     <div>
-      <Home/>
+      <Index/>
     </div>
   )
 }
