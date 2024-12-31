@@ -4,7 +4,8 @@ import Home from '../pages/Home'
 import Login from '../pages/Login'
 import Category from '../compoents/Category'
 import Transaction from '../pages/Transaction'
-import Signup from '../pages/Signup'
+import Sign from '../compoents/Sign'
+
 const Index = () => {
   return (
     <>
@@ -14,7 +15,7 @@ const Index = () => {
         <Route path='/login' element={<Login/>}/>
         <Route path='/categoryadd' element={<Category/>}/>
         <Route path='/transaction' element={<Transaction/>}/>
-        <Route path='/signup' element={<Signup/>}/>
+        <Route path='/signup' element={<Sign/>}/>
     </Routes>
     </BrowserRouter>
     </>
