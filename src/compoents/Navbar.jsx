@@ -1,6 +1,9 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
-const Navbar = () => {
+const   Navbar = () => {
+
+  const navigate = useNavigate()
   return (
     <>
     <div className='flex text-sm justify-between  pr-4 ' >
@@ -13,16 +16,20 @@ const Navbar = () => {
        Overview
      </div>
 
-     <div  className=''>
+     <div  className='cursor-pointer' onClick={()=> navigate('/alltransaction')}>
         Transactions
     </div>
 
-    <div className=''    >
-        Transfers
+   
+    <div className='cursor-pointer'  onClick={()=>navigate('/categorylist')}>
+        Category
     </div>
+
+
     <div className=''>
-        Wallets
+        Logout
     </div>
+
 </div>
     <hr  />
     </>

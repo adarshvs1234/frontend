@@ -27,9 +27,7 @@ const handleSubmit = (values) =>{
 }
 
 
-
-
-  return (
+return (
 
     <div class="flex justify-center items-center h-screen bg-red-400 shadow-lg">
       <div class="w-90 p-6 shadow-lg bg-white rounded-md">
@@ -38,21 +36,23 @@ const handleSubmit = (values) =>{
       <h1 className='text-center '>Log in</h1>
       <hr />
 
-
+  
       <Formik 
         initialValues = {initialValues}
       validationSchema = {validationSchema}
       onSubmit = {handleSubmit}
       >
 
-      {()=>(
+
+
+      {()=>(  
 <Form>
 
 
 <div className="mb-4">
 <Field type='text' name='username'  className='text-xs border text-center w-full' placeholder='Enter username'/>
 
-<ErrorMessage name='username'  component='div'  className='text-red-500 text-xs'/>
+<ErrorMessage name='username'  component='div' className="text-red-500 text-xs" />
 
 </div>
 

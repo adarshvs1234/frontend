@@ -2,21 +2,41 @@ import React from 'react'
 import {BrowserRouter, Route, Routes} from "react-router-dom"
 import Home from '../pages/Home'
 import Login from '../pages/Login'
-import Category from '../compoents/Category'
+
 import Transaction from '../pages/Transaction'
 import Sign from '../compoents/Sign'
+import Transactions from '../pages/Transactions'
+
+
+
+import Categorylis from '../pages/Categorylis'
+
+import Booktransaction from '../compoents/Booktransaction'
+import Foodtrans from '../pages/Foodtrans'
 
 const Index = () => {
   return (
     <>
     <BrowserRouter>
     <Routes>
-        <Route path='/home' element={<Home/>}/>
+        <Route path='/' element={<Home/>}/>
         <Route path='/login' element={<Login/>}/>
-        <Route path='/categoryadd' element={<Category/>}/>
-        <Route path='/transaction' element={<Transaction/>}/>
         <Route path='/signup' element={<Sign/>}/>
-    </Routes>
+       
+
+        <Route path='/transaction' element={<Transaction/>}/>
+        <Route path='/alltransaction' element={<Transactions/>}/>
+       
+       
+        <Route path='/categorylist' element={<Categorylis/>}/>
+       
+
+        <Route path='/booktransaction' element={<Booktransaction/>}/>
+        <Route path='/foodtransaction' element={<Foodtrans/>}/>
+        
+
+
+</Routes>
     </BrowserRouter>
     </>
   )
