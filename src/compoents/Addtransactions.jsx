@@ -72,10 +72,16 @@ const handleSubmit = (values) =>{
         </div>
 
 
-        <div>
+        <div className='text-xs mt-1 border border text-center w-full'>
          
-          <Field type="text" name="type" className="border w-full text-xs text-center" placeholder="Enter transaction type" />
-          <ErrorMessage name='type'  component='div'  className='text-red-500 text-xs' />
+
+            <select >
+              <option selected >Select your transaction type</option>
+              <option>Expense</option>
+              <option>Income</option>
+            </select>
+          {/* <Field type="text" name="type" className="border w-full text-xs text-center" placeholder="Enter transaction type" /> */}
+          {/* <ErrorMessage name='type'  component='div'  className='text-red-500 text-xs' /> */}
         </div>
 
         <br />
