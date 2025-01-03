@@ -4,9 +4,10 @@ import Index from './route/Index'
 
 const App = () => {
   return (
-    <div>
+   
       <Index/>
-    </div>
+ 
+ 
   )
 }
 

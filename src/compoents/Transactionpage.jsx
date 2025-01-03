@@ -1,4 +1,6 @@
 import React from 'react'
+import { useTransaction } from '../services/transactionServices'
+
 
 const Transactionpage = () => {
   return (
@@ -28,11 +30,13 @@ const Transactionpage = () => {
          <td  className='border border-white px-1 py-1'>Expense</td>
         </tr>
 
-
+        
       </table>
       </div>
 
-    
+
+
+
     {/* <div className='text-xs pl-2' >
         Transaction 1
       </div>

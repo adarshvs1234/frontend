@@ -2,13 +2,30 @@ import React from 'react'
 import * as Yup from 'yup'
 import {Formik,Form,Field,ErrorMessage} from 'formik'
 
+import { useDispatch} from 'react-redux'
+import { login } from '../redux/authSlice'
+import { useNavigate } from 'react-router-dom'
+import { loginAPI } from '../services/userServices'
+
+
 const Loginnavbar = () => {
+
+
+
+  // const user = {
+  //   email : "hello@gmail.com",
+  //   password : "hello"
+  // }
+
+
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
 
 const validationSchema = Yup.object({
 
-  username : Yup.string().required('Username is required'),
+  email : Yup.string().required('email is required'),
   password : Yup.string()
-              .min(6,'Password must be atleast 6 characters')
+              .min(3,'Password must be atleast 3 characters')
               .required('Password is required')
 
 })
@@ -16,16 +33,35 @@ const validationSchema = Yup.object({
 
 const initialValues = {
 
-  username:'',
+  email:'',
   password:'',
   rememberMe:false
   
 } 
 
-const handleSubmit = (values) =>{
-  console.log('Form Data',values)
+const handleSubmit = async(values) =>{
+
+  try{
+    const response = await loginAPI(values);
+    if (response?.success) {
+      dispatch(login({ email: values.email,password:values.password, rememberMe: values.rememberMe }));
+      alert('Welcome!');
+      navigate('/'); 
 }
 
+  else{
+    alert('Unsucessfull')
+
+  }
+
+  }
+
+
+catch(error){
+  alert('Error',error)
+  console.log('ERROR');
+  
+}
 
 return (
 
@@ -50,9 +86,9 @@ return (
 
 
 <div className="mb-4">
-<Field type='text' name='username'  className='text-xs border text-center w-full' placeholder='Enter username'/>
+<Field type='text' name='email'  className='text-xs border text-center w-full' placeholder='Enter email'/>
 
-<ErrorMessage name='username'  component='div' className="text-red-500 text-xs" />
+<ErrorMessage name='email'  component='div' className="text-red-500 text-xs" />
 
 </div>
 
@@ -70,7 +106,7 @@ return (
 
 
 <div className="text-center mt-4">
-<button type="submit" className="bg-stone-950 text-white rounded-full text-xs w-full"> Login</button>
+<button type="submit" className="bg-stone-950 text-white rounded-full text-xs w-full  cursor-pointer"> Login</button>
 </div>
 
 </Form>

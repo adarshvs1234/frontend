@@ -1,11 +1,16 @@
 import React from 'react'
 import Loginnavbar from '../compoents/Loginnavbar'
+import { Provider } from 'react-redux'
+import store from '../redux/Store'
 
 const Login = () => {
   return (
-    <div>
+    
+      <Provider store={store}>
       <Loginnavbar/>
-    </div>
+      </Provider>
+   
+   
   )
 }
 

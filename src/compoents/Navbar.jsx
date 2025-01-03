@@ -26,7 +26,7 @@ const   Navbar = () => {
     </div>
 
 
-    <div className=''>
+    <div className='cursor-pointer'   onClick={()=>navigate('/login')}>
         Logout
     </div>
 

@@ -1,9 +1,9 @@
 import React from 'react'
 import Addtransactions from '../compoents/Addtransactions'
-import { useParams } from 'react-router-dom'
+
 
 const Transaction = () => {
-  const {id} = useParams()
+  // const {id} = useParams()
   return (
     <div>
       <Addtransactions/>
@@ -12,3 +12,6 @@ const Transaction = () => {
 }
 
 export default Transaction
+
+
+
