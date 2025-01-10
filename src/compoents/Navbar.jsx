@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom'
 const   Navbar = () => {
 
   const navigate = useNavigate()
+
+  
   return (
     <>
     <div className='flex text-sm justify-between  pr-4 ' >
@@ -12,9 +14,7 @@ const   Navbar = () => {
         ExpTracker.
     </div >
 
-     <div className=''>
-       Overview
-     </div>
+     
 
      <div  className='cursor-pointer' onClick={()=> navigate('/alltransaction')}>
         Transactions
@@ -26,9 +26,11 @@ const   Navbar = () => {
     </div>
 
 
-    <div className='cursor-pointer'   onClick={()=>navigate('/login')}>
-        Logout
+    <div className='cursor-pointer'  onClick={()=>navigate('/profile')}>
+       Profile
     </div>
+
+
 
 </div>
     <hr  />

@@ -1,18 +1,28 @@
 import React from 'react'
 import * as Yup from 'yup'
 import {Formik,Form,Field,ErrorMessage} from 'formik'
+import { useMutation } from '@tanstack/react-query'
+import { useDispatch } from 'react-redux'
+import { signup } from '../redux/authSlice'
+import Cookies from 'js-cookie'
+import { userData } from '../utls/cookiehandle'
+import { jwtDecode } from 'jwt-decode'
+import { signAPI } from '../services/userServices'
+
 
 
 const Sign = () => {
+
+    const dispatch = useDispatch()
 
 const validationSchema = Yup.object({
 
     username :  Yup.string().required('Username is required'),
     password : Yup.string()
-                .min(6,'Password should have 6 characters')
+                .min(3,'Password should have 3 characters')
                 .required('Password is required'),
                                                                                                                                                                                                  
-    email : Yup.string()
+    email : Yup.string().email()
             .required('Email is required')
 })
 
@@ -25,9 +35,38 @@ const initialValues = {
 
 }
 
-const handleSubmit = (values) =>{
+const {mutateAsync,isError,error} = useMutation({
+  mutationFn: signAPI,
+  mutationKey: ["sign"]
+})
 
-    console.log('Form Data ',values)
+const handleSubmit = (values) =>{
+  console.log(values);
+
+  
+
+
+  mutateAsync(values).then((token)=>{
+       
+    console.log(token);
+    
+        const data = jwtDecode(token)
+        console.log(data);
+        
+        Cookies.set("userData",(token))
+        dispatch(signup(data))
+      
+        
+   
+    // console.log('Form Data ',values)
+
+    //     dispatch(signup(values))
+    //   const toke = Cookies.set("userData")
+    //   console.log(toke);
+      
+    //   // ,JSON.stringify(token))
+        })
+
 }
 
   return (

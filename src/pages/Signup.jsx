@@ -5,7 +5,7 @@ import Sign from '../compoents/Sign'
 
 const Signup = () => {
   return (
-    <div>
+    <div >
         <Sign/>
     </div>
   )

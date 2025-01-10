@@ -1,35 +1,43 @@
 import React from 'react'
 import * as Yup from 'yup'
 import {Formik,Form,Field,ErrorMessage} from 'formik'
-
-import { useDispatch} from 'react-redux'
+import { useDispatch, useSelector} from 'react-redux'
 import { login } from '../redux/authSlice'
 import { useNavigate } from 'react-router-dom'
+import {jwtDecode} from 'jwt-decode'
+import { useMutation } from '@tanstack/react-query'
 import { loginAPI } from '../services/userServices'
+import Cookies from 'js-cookie'
+
+
 
 
 const Loginnavbar = () => {
 
+ 
+
+const navigate = useNavigate()
+const dispatch = useDispatch()
+
+  
 
 
-  // const user = {
-  //   email : "hello@gmail.com",
-  //   password : "hello"
-  // }
 
-
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
 
 const validationSchema = Yup.object({
 
-  email : Yup.string().required('email is required'),
+  email : Yup.string().email().required('email is required'),
   password : Yup.string()
               .min(3,'Password must be atleast 3 characters')
               .required('Password is required')
 
 })
 
+
+const {mutateAsync,isError,error} = useMutation({
+  mutationFn: loginAPI,
+  mutationKey: ["login"]
+})
 
 const initialValues = {
 
@@ -39,41 +47,30 @@ const initialValues = {
   
 } 
 
-const handleSubmit = async(values) =>{
+const handleSubmit = (values) =>{
 
-  try{
-    const response = await loginAPI(values);
-    if (response?.success) {
-      dispatch(login({ email: values.email,password:values.password, rememberMe: values.rememberMe }));
-      alert('Welcome!');
-      navigate('/'); 
-}
-
-  else{
-    alert('Unsucessfull')
-
-  }
-
-  }
-
-
-catch(error){
-  alert('Error',error)
-  console.log('ERROR');
+mutateAsync(values).then((token)=>{
+  console.log(token);
   
+  const data = jwtDecode(token)
+  Cookies.set("userData",token,{expires:1})
+  dispatch(login(data),JSON.stringify(values))
+  navigate('/')
+  
+})
 }
 
 return (
 
-    <div class="flex justify-center items-center h-screen bg-red-400 shadow-lg">
-      <div class="w-90 p-6 shadow-lg bg-white rounded-md">
+    <div className="flex justify-center items-center h-screen bg-red-400 shadow-lg">
+      <div className="w-90 p-6 shadow-lg bg-white rounded-md">
 
 
       <h1 className='text-center '>Log in</h1>
       <hr />
 
   
-      <Formik 
+      <Formik
         initialValues = {initialValues}
       validationSchema = {validationSchema}
       onSubmit = {handleSubmit}
@@ -85,8 +82,16 @@ return (
 <Form>
 
 
+{isError && (
+    <div className="bg-red-100 text-red-700 p-2 rounded mb-4 text-sm">
+      {error?.response?.data?.message || error?.message || 'Login failed. Please try again.'}
+    </div>
+  )}
+
+
+
 <div className="mb-4">
-<Field type='text' name='email'  className='text-xs border text-center w-full' placeholder='Enter email'/>
+<Field type='text' name='email'  className='text-xs border text-center w-full' placeholder="Enter email" />
 
 <ErrorMessage name='email'  component='div' className="text-red-500 text-xs" />
 
@@ -106,22 +111,16 @@ return (
 
 
 <div className="text-center mt-4">
-<button type="submit" className="bg-stone-950 text-white rounded-full text-xs w-full  cursor-pointer"> Login</button>
+<button type="submit" className="bg-stone-950 text-white rounded-full text-xs w-full  cursor-pointer" > Login</button>
 </div>
 
 </Form>
 )}
 
 </Formik>
-
-        {/* <label className='text-xs'>Username</label> */}
-        <br />
+    <br />
        
-      {/* <hr /> */}
-      
-        {/* <label className='text-xs'>Password</label> */}
-        
-    <div className='text-xs pt-2'>
+  <div className='text-xs pt-2'>
       Don't you have an account? <a href='/signup' >Register</a>
     </div>
     </div>
@@ -130,5 +129,5 @@ return (
   )
 }
 
+export default  Loginnavbar
 
-export default Loginnavbar

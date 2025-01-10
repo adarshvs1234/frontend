@@ -11,8 +11,17 @@ import Transactions from '../pages/Transactions'
 
 import Categorylis from '../pages/Categorylis'
 
-import Booktransaction from '../compoents/Booktransaction'
-import Foodtrans from '../pages/Foodtrans'
+
+
+
+import Prof from '../pages/Prof'
+import Changep from '../pages/Changep'
+import Changen from '../pages/Changen'
+import Categorytransac from '../pages/Categorytransac'
+  
+
+
+
 
 const Index = () => {
   return (
@@ -29,13 +38,15 @@ const Index = () => {
        
        
         <Route path='/categorylist' element={<Categorylis/>}/>
-       
+        <Route path='/categorytrans/:id' element={<Categorytransac/>}/>
 
-        <Route path='/booktransaction' element={<Booktransaction/>}/>
-        <Route path='/foodtransaction' element={<Foodtrans/>}/>
         
-
-
+        
+        <Route path='/profile' element={<Prof/>}/>
+        <Route path='/password' element={<Changep/>}/>
+        <Route path='/name' element={<Changen/>}/>
+      
+       
 </Routes>
     </BrowserRouter>
     </>

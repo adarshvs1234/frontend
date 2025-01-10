@@ -1,6 +1,10 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Foodtransactio = () => {
+  
+
+  const navigate = useNavigate()
   return (
     <div className='bg-red-300 h-screen'> 
     <div className='text-center'>
@@ -23,7 +27,8 @@ const Foodtransactio = () => {
          <td  className='border border-white px-1 py-1'>500</td>
         <td  className='border border-white px-1 py-1'>Dinner</td>
          <td  className='border border-white px-1 py-1'>Expense</td>
-        </tr>
+         <button type='button' className='border border-2' >Update</button>
+   </tr>
 
         
        
