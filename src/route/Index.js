@@ -18,6 +18,7 @@ import Prof from '../pages/Prof'
 import Changep from '../pages/Changep'
 import Changen from '../pages/Changen'
 import Categorytransac from '../pages/Categorytransac'
+import TransacUpdate from '../pages/TransacUpdate'
   
 
 
@@ -35,6 +36,8 @@ const Index = () => {
 
         <Route path='/transaction' element={<Transaction/>}/>
         <Route path='/alltransaction' element={<Transactions/>}/>
+        <Route path='/transactionupdate/:id' element={<TransacUpdate/>}/>
+        
        
        
         <Route path='/categorylist' element={<Categorylis/>}/>

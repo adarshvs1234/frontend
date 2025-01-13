@@ -8,9 +8,12 @@ const Transaccategory = () => {
     const {id} = useParams()
 console.log("id",id)
 
-const {data} = useQuery({
+const {data,refetch} = useQuery({
     queryFn:()=>categoryTransactionAPI({id}),
-    queryKey:["categorytransaction",id]
+    queryKey:["categorytransaction",id],
+
+    refetchOnWindowFocus: true,
+    staleTime: 30000, 
     
  })
 

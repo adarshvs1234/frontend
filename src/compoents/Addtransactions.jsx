@@ -1,18 +1,15 @@
 import React from 'react'
 import * as Yup from 'yup'
 import { useMutation } from '@tanstack/react-query'
-import { getToken, userData } from '../utls/cookiehandle'
-import { useDispatch } from 'react-redux'
-import { addtransaction, userUpdate } from '../redux/authSlice'
-
 import { ErrorMessage, Field, Form, Formik } from 'formik'
-import { fetchTransactionAPI, postTransactionAPI } from '../services/transactionServices'
-import { jwtDecode } from 'jwt-decode'
+import {  postTransactionAPI } from '../services/transactionServices'
+
+
+
 
 const AddTransaction = () => {
-
-        const dispatch = useDispatch()
-    
+  
+   
     const validationSchema = Yup.object({
 
       amount: Yup.number().required('Amount is required'),
@@ -21,20 +18,20 @@ const AddTransaction = () => {
 
       description: Yup.string().required('Description is required'),
 
-      transactiontype: Yup.string().required('Type is required'), 
+      transactionType: Yup.string().required('Type is required'), 
     })
 
     const {mutateAsync} = useMutation({
         mutationFn:postTransactionAPI,
         mutationKey:["addTransaction"]
     })
-
+ 
     const initialValues = {
 
       amount: '',
       category: '',
       description: '',
-      transactiontype: '',
+      transactionType: '',
     }
 
 
@@ -47,7 +44,7 @@ const AddTransaction = () => {
         .then((data)=>{
 
         console.log(data)
-     
+        
       //dispatch(addtransaction(data))   
       })
     }
@@ -110,14 +107,14 @@ onSubmit = {handleSubmit}
 
 
               <div className="text-xs mt-1 border border text-center w-full">
-                <Field as="select" name="transactiontype" className="border w-full text-xs text-center">
+                <Field as="select" name="transactionType" className="border w-full text-xs text-center">
                   <option value="" disabled selected>
                     Select your transaction type
                   </option>
                   <option value="Expense">Expense</option>
                   <option value="Income">Income</option>
                 </Field>
-                <ErrorMessage name="transactiontype" component="div" className="text-red-500 text-xs" />
+                <ErrorMessage name="transactionType" component="div" className="text-red-500 text-xs" />
               </div>
 
 
