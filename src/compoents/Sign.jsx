@@ -10,7 +10,6 @@ import { jwtDecode } from 'jwt-decode'
 import { signAPI } from '../services/userServices'
 
 
-
 const Sign = () => {
 
     const dispatch = useDispatch()
@@ -40,76 +39,75 @@ const {mutateAsync,isError,error} = useMutation({
   mutationKey: ["sign"]
 })
 
-const handleSubmit = (values) =>{
-  console.log(values);
+const handleSubmit = async (values, { resetForm, setFieldError }) => {
+  try {
+    console.log(values);
 
-  
-
-
-  mutateAsync(values).then((token)=>{
-       
+    const token = await mutateAsync(values);
     console.log(token);
-    
-        const data = jwtDecode(token)
-        console.log(data);
-        
-        Cookies.set("userData",(token))
-        dispatch(signup(data))
-      
-        
-   
-    // console.log('Form Data ',values)
+    const data = jwtDecode(token);
+    console.log(data);
+    Cookies.set("userData", token);
+    dispatch(signup(data));
+    alert("You are successfully signed up");
+    resetForm();
+  } catch (err) {
+    if (err.response && err.response.data.errors) {
+      const { errors } = err.response.data;
 
-    //     dispatch(signup(values))
-    //   const toke = Cookies.set("userData")
-    //   console.log(toke);
-      
-    //   // ,JSON.stringify(token))
-        })
+      for (const field in errors) {
+        setFieldError(field, errors[field]);
+      }
 
-}
+      alert("User cannot be created with the entered credentials");
+    } else {
+      console.error("Unexpected error:", err);
+      alert("An unexpected error occurred. Please try again later.");
+    }
+  }
+};
+
+
 
   return (
 
-    <div className='flex justify-center items-center h-screen bg-red-400 shadow-lg '>
-        <div className='w-90 p-6 shadow-lg bg-white rounded-md'>
-     <h1 className='text-center'>Sign Up</h1>
-     <hr />
+    <div className='flex justify-center items-center h-screen bg-cyan-500 shadow-lg '>
+        <div className='w-15 max-w-lg p-6 shadow-lg bg-white rounded-md  sm:p-12 sm:w-full'>
+     <h1 className='text-center text-xl font-semibold'>Sign Up</h1>
+  
     <br />  
-
-
 
     <Formik 
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
-        >
+        resetForm>
 
 {()=>(
 
     <Form>
         <div>
-            <Field type="text" name="username" className=" text-xs border" placeholder="Enter username" />
+            <Field type="text" name="username" className="text-xs border w-full p-2 mb-4 rounded" placeholder="Enter username" />
 
             <ErrorMessage name='username' component='div'  className='text-red-500 text-xs' />
         </div>
 
 
         <div>
-        <Field type="text" name="email" class="form-control text-xs border" placeholder="Enter email" />
+        <Field type="text" name="email" className="form-control text-xs border w-full p-2 mb-4 rounded" placeholder="Enter email" />
 
         <ErrorMessage name='email' component='div' className='text-red-500 text-xs'/>
         </div>
 
 
         <div>
-        <Field type="password" name="password" className="form-control text-xs  border" placeholder="Enter password"/>
+        <Field type="password" name="password" className="form-control text-xs border w-full p-2 mb-4 rounded" placeholder="Enter password"/>
 
         <ErrorMessage name='password' component='div' className='text-red-500 text-xs'/>
         </div>
 
         <div>
-          <button type="submit" class="bg-stone-950 rounded full w-full text-xs text-white">Register</button>
+          <button type="submit" className="bg-stone-950 rounded w-full text-xs text-white p-2 hover:bg-stone-700">Register</button>
         </div>
 
 
@@ -118,8 +116,8 @@ const handleSubmit = (values) =>{
 
 </Formik>
      
-<div className='text-xs'>
-        Already signed? <a href='/login' >Login</a> 
+<div className='text-xs text-center mt-4'>
+        Already signed up? <a href='/login' className="text-blue-600">Login</a> 
        </div>
 
    </div>
@@ -130,5 +128,3 @@ const handleSubmit = (values) =>{
 }
 
 export default Sign
-
-

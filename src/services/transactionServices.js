@@ -49,7 +49,7 @@ export const postTransactionAPI = async(data) =>{
                     Authorization:`Bearer ${token}`
             }
     })
-    console.log("resonse",response)
+    console.log("resonspe",response)
     return response.data
 
 
@@ -83,9 +83,10 @@ export const categoryTransactionAPI = async({data,id}) =>{
     
 export const fetchAmountTransactionAPI = async({data})=>{
 
-        const token = getToken()
-
-                 
+       const token = getToken()
+       console.log("ji")
+        console.log("ki",token)
+        
         const response = await axios.get(`${BASE_URL}/transaction/summary`,{
                 
                 params:data,
@@ -93,8 +94,58 @@ export const fetchAmountTransactionAPI = async({data})=>{
                         Authorization:`Bearer ${token}`
                 }
         })
-        
+        console.log("fetchdata",data)
         console.log("response",response.data);
         
         return response.data
+}
+
+
+
+export const deleteAllTransactionsAPI = async(itemdata) =>{
+
+        console.log("Delete id",itemdata)
+        
+        const token = getToken()
+        console.log(token)
+    
+     
+        const response = await axios.delete(`${BASE_URL}/transaction/delete_category`, {
+                        
+                headers:{
+                        Authorization:`Bearer ${token}`
+                }
+        })
+
+       
+console.log(response.data)
+
+
+return response.data
+}
+
+
+
+
+//update API
+export const updateTransactionsAPI = async(data,id)=>{
+
+
+        
+        const token = getToken()
+        console.log(token)
+       
+        
+       console.log("Update data",data)
+       console.log("update id",id)
+        const response = await axios.put(`${BASE_URL}/transaction/${id}`, data,{
+                        
+                headers:{
+                        Authorization:`Bearer ${token}`
+                }
+        })
+        console.log("update")   
+console.log(response.data)
+
+return response.data
 }

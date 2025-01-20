@@ -39,19 +39,20 @@ export const changePasswordAPI  = async(data) =>{
 }
 
 
-export const changeNameAPI = async(data) =>{
-        
-        const token = getToken()
-        console.log(token)
-        const response = await axios.put(`${BASE_URL}/user/change_name`,data,{
+        export const changeNameAPI = async(data) =>{
+                
+                const token = getToken()
+                console.log("token",token)
+        console.log("axios",data)
+                const response = await axios.put(`${BASE_URL}/user/change_name`,data,{
 
-                headers:{
-                        Authorization:`Bearer ${token}`
-                }
-        })
-        console.log(response)
-        return response.data
+                        headers:{
+                                Authorization:`Bearer ${token}`
+                        }
+                })
+                console.log(response.data)
+                return response.data
+                
 
-
-        } 
+                } 
 

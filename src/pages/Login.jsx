@@ -2,8 +2,8 @@ import React from 'react'
 import Loginnavbar from '../compoents/Loginnavbar'
 import { Provider } from 'react-redux'
 import store from '../redux/Store'
-import { ReactQueryDevtools }  from '@tanstack/react-query-devtools'
-import { QueryClientProvider,QueryClient} from '@tanstack/react-query'
+// import { ReactQueryDevtools }  from '@tanstack/react-query-devtools'
+// import { QueryClientProvider,QueryClient} from '@tanstack/react-query'
 
 
 

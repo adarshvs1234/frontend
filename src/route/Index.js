@@ -1,5 +1,5 @@
 import React from 'react'
-import {BrowserRouter, Route, Routes} from "react-router-dom"
+import {BrowserRouter, Route,  Routes} from "react-router-dom"
 import Home from '../pages/Home'
 import Login from '../pages/Login'
 
@@ -19,6 +19,7 @@ import Changep from '../pages/Changep'
 import Changen from '../pages/Changen'
 import Categorytransac from '../pages/Categorytransac'
 import TransacUpdate from '../pages/TransacUpdate'
+import Errorpage from '../pages/Errorpage'
   
 
 
@@ -28,6 +29,9 @@ const Index = () => {
   return (
     <>
     <BrowserRouter>
+    
+
+   
     <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/login' element={<Login/>}/>
@@ -48,9 +52,11 @@ const Index = () => {
         <Route path='/profile' element={<Prof/>}/>
         <Route path='/password' element={<Changep/>}/>
         <Route path='/name' element={<Changen/>}/>
+        <Route path='/*' element={<Errorpage/>}/>
       
        
 </Routes>
+
     </BrowserRouter>
     </>
   )

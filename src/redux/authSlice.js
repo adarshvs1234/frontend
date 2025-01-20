@@ -4,7 +4,7 @@ import { userData } from '../utls/cookiehandle'
 
 const initialState ={
 
-    user : userData || null,
+    user : userData() || null,
     isAuthenticated : false
 }
 
@@ -32,24 +32,28 @@ const authSlice = createSlice({
             state.user = action.payload
         }),
 
-        userUpdate : ((state,action) =>{
+        userNameUpdate : ((state,action) =>{
 
-            state.user = action.payload
-        }),
-
-        addtransaction : ((state,action) =>{
-
-                state.user = action.payload
-        })
        
 
+                // state.user.name = action.payload
+                state.user = action.payload
+          
+}),
 
+         userPasswordUpdate : ((state,action)=>{
 
+           state.user = action.payload
+
+         })
+
+      
+       
     }
 })
 
 
-export const {login,logout,signup,userUpdate,addtransaction}  = authSlice.actions
+export const {login,logout,signup,userPasswordUpdate,userNameUpdate}  = authSlice.actions
 export default authSlice.reducer
 
 

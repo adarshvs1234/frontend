@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { use } from 'react'
 import * as Yup from 'yup'
 import {Formik,Form,Field,ErrorMessage} from 'formik'
 import { useDispatch, useSelector} from 'react-redux'
@@ -19,11 +19,7 @@ const Loginnavbar = () => {
 const navigate = useNavigate()
 const dispatch = useDispatch()
 
-  
-
-
-
-
+ 
 const validationSchema = Yup.object({
 
   email : Yup.string().email().required('email is required'),
@@ -47,34 +43,48 @@ const initialValues = {
   
 } 
 
-const handleSubmit = (values) =>{
+  const handleSubmit = async(values,{resetForm}) => {
 
-mutateAsync(values).then((token)=>{
-  console.log(token);
-  
-  const data = jwtDecode(token)
-  Cookies.set("userData",token,{expires:1})
-  dispatch(login(data),JSON.stringify(values))
-  navigate('/')
-  
-})
-}
+
+    try{
+
+      const token = await mutateAsync(values);
+
+      const data = jwtDecode(token);
+      Cookies.set("userData", token, { expires: 1 });
+      dispatch(login(data),JSON.stringify(values));
+      alert("Login successful");
+      navigate('/')
+
+    } catch (error) {
+     
+      console.error("Login failed:", error);
+      alert("Login failed. Please try again.");
+     
+
+    }
+
+    resetForm()
+
+  }
 
 return (
 
-    <div className="flex justify-center items-center h-screen bg-red-400 shadow-lg">
-      <div className="w-90 p-6 shadow-lg bg-white rounded-md">
+    <div className="flex justify-center items-center h-screen bg-red-600 shadow-lg ">
+     <div className="w-120 p-11 bg-white rounded-md md:p-12 shadow-[0_8px_30px_rgba(0,0,0,0.8)]">
 
 
-      <h1 className='text-center '>Log in</h1>
-      <hr />
+
+
+      <h1 className='text-center pb-3'>Log In</h1>
+  
 
   
-      <Formik
+  <Formik
         initialValues = {initialValues}
       validationSchema = {validationSchema}
       onSubmit = {handleSubmit}
-      >
+      resetForm>
 
 
 
@@ -121,7 +131,7 @@ return (
     <br />
        
   <div className='text-xs pt-2'>
-      Don't you have an account? <a href='/signup' >Register</a>
+      Don't you have an account? <a href='/signup'  className="text-blue-600">Register</a>
     </div>
     </div>
     </div>
