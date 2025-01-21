@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery} from '@tanstack/react-query';
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { deleteCategortyAPI, fetchCategoryAPI } from '../services/categoryServices';
@@ -6,9 +6,15 @@ import { deleteCategortyAPI, fetchCategoryAPI } from '../services/categoryServic
 const Categorylist = () => {
   const navigate = useNavigate();
 
+   
+    
+
   const { data, isError, isLoading,refetch } = useQuery({
     queryFn: fetchCategoryAPI,
     queryKey: ["categorylist"],
+    
+
+  
   });
 
 
@@ -49,6 +55,9 @@ const Categorylist = () => {
       
       console.log("tobedeleetd",key)
       mutate(key)
+
+
+
        
  }
 

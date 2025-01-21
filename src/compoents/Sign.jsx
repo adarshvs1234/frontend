@@ -71,7 +71,7 @@ const handleSubmit = async (values, { resetForm, setFieldError }) => {
 
   return (
 
-    <div className='flex justify-center items-center h-screen bg-cyan-500 shadow-lg '>
+    <div className='flex justify-center items-center h-screen bg-cyan-300 shadow-lg '>
         <div className='w-15 max-w-lg p-6 shadow-lg bg-white rounded-md  sm:p-12 sm:w-full'>
      <h1 className='text-center text-xl font-semibold'>Sign Up</h1>
   

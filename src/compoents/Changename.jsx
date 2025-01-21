@@ -83,7 +83,7 @@ resetForm()
   return (
 
 <>
-<div className="flex justify-center items-center h-screen bg-rose-400 shadow-lg  overflow-hidden ">
+<div className="flex justify-center items-center h-screen bg-red-400 shadow-lg  overflow-hidden ">
   <div className="w-78 h-64 p-8 shadow-lg bg-white rounded-md flex flex-col justify-between sm:w-96">
     <div className="text-xs text-center font-semibold md:text-base lg:text-xl ">
       Change Username

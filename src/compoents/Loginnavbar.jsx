@@ -70,7 +70,7 @@ const initialValues = {
 
 return (
 
-    <div className="flex justify-center items-center h-screen bg-red-600 shadow-lg ">
+    <div className="flex justify-center items-center h-screen  bg-cyan-300 shadow-lg ">
      <div className="w-120 p-11 bg-white rounded-md md:p-12 shadow-[0_8px_30px_rgba(0,0,0,0.8)]">
 
 
