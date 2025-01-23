@@ -5,14 +5,25 @@ import { fetchAmountTransactionAPI, fetchTransactionAPI } from '../services/tran
 import { fetchCategoryAPI } from '../services/categoryServices';
 import {
   Chart,
-  DoughnutController,
-  ArcElement,
+  BarController,
+  BarElement,
+  CategoryScale,
+  LinearScale,
+  Title,
   Tooltip,
   Legend,
 } from 'chart.js';
 
 
-Chart.register(DoughnutController, ArcElement, Tooltip, Legend);
+Chart.register(
+  BarController,
+  BarElement,
+  CategoryScale,
+  LinearScale,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const Content = () => {
   const navigate = useNavigate();
@@ -44,80 +55,91 @@ const Content = () => {
   const limitedData = data?.slice(0, 2);
 
   useEffect(() => {
-    const updateChartSize = () => {
-      const width = window.innerWidth;
-      const height = window.innerHeight;
-
-      
-      setChartSize({
-        width: width / 1.25,
-        height: height / 1.25, 
-      });
-    };
-
-    updateChartSize();
-    window.addEventListener('resize', updateChartSize);
-
-    return () => {
-      window.removeEventListener('resize', updateChartSize);
-    };
-  }, []);
-
-  useEffect(() => {
     if (summaryDataLoaded && chartRef.current && summarydata) {
      
       if (chartInstance.current) {
         chartInstance.current.destroy();
       }
-
+  
+    
       chartInstance.current = new Chart(chartRef.current.getContext('2d'), {
-        type: 'doughnut',
+        type: 'bar',
         data: {
           labels: ['Balance', 'Income', 'Expense'],
           datasets: [
             {
-              label: 'Amount in Units',
+              label: 'Amount',
               data: [
                 summarydata.balance,
                 summarydata.totalIncome,
                 summarydata.totalExpense,
               ],
               backgroundColor: ['#36A2EB', '#FF6384', '#FFCE56'],
-              hoverOffset: 4,
+              borderColor: ['#1E90FF', '#FF4D4D', '#FFC300'], 
+              borderWidth: 2, 
             },
           ],
         },
         options: {
+          indexAxis: 'y', 
+          elements: {
+            bar: {
+              borderWidth: 2,
+            },
+          },
           responsive: true,
           maintainAspectRatio: false,
           plugins: {
             legend: {
-              position: 'top',
+              position: 'right', 
+              labels: {
+                color: 'black', 
+              },
+            },
+            title: {
+              display: true,
+              text: ' ',
+              color: 'black',
             },
             tooltip: {
               callbacks: {
                 label: function (tooltipItem) {
                   return (
                     tooltipItem.dataset.label +
-                    ': ' +
-                    tooltipItem.raw +
-                    ' units'
+                    ': ₹' +
+                    tooltipItem.raw 
+                    
                   );
                 },
               },
             },
           },
+          scales: {
+            x: {
+              beginAtZero: true, 
+              ticks: {
+                color: 'black', 
+              },
+             
+            },
+            y: {
+              ticks: {
+                color: 'black',
+              },
+              
+            },
+          },
         },
       });
     }
-
-   
+  
     return () => {
       if (chartInstance.current) {
         chartInstance.current.destroy();
       }
     };
   }, [summaryDataLoaded, summarydata]);
+  
 
   return (
     <>
@@ -137,7 +159,8 @@ const Content = () => {
           </div>
         </div>
 
-        <div className="flex pt-5 pl-2 text-sm pl-9 pb-2">
+      <div className='flex justify-center items-center '>
+          <div className="flex pt-5 pl-2 text-sm pl-9 pb-2 ">
           <div className="border border-black border-1 h-14 pr-5 pl-2 text-xs xl:text-xl 2xl:text-xl   md:text-sm  font-semibold">
             Current Balance
             <div className="text-center pt-1 xl:text-xl 2xl:text-xl">
@@ -158,6 +181,9 @@ const Content = () => {
           </div>
         </div>
       </div>
+      </div>
+
+      
 
       <div className="  flex justify-center items-center h-6 text-dark   md:text-base mb-2 mt-2">
         <div className="text-sm px-9 text-center  xl:text-xl 2xl:text-xl font-semibold md:text-base  ">
@@ -192,13 +218,13 @@ const Content = () => {
         </div>
       </div>
 
-      <div className="  flex justify-center items-center h-6 text-white mt-3 text-black ml-3 mb-2 mt-2">
+      <div className="  flex justify-center items-center h-6 text-dark mt-3 text-black ml-3 mb-2 mt-2">
         <div className="text-sm px-9 text-center md:text-base xl:text-xl 2xl:text-xl  font-semibold pb-2">
           Representation
         </div>
       </div>
 
-      <div className="pt-3 pb-5 flex justify-center bg-sky-800   pt-2">
+      <div className="pt-3 pb-5 flex justify-center   pt-2">
         <canvas ref={chartRef} width={chartSize.width} height={chartSize.height}></canvas>
       </div>
     </>

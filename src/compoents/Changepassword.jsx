@@ -9,12 +9,14 @@ import { jwtDecode } from 'jwt-decode';
 import { userData } from '../utls/cookiehandle';
 import { useDispatch, useSelector } from 'react-redux';
 import Cookies from 'js-cookie'
+import { useNavigate } from 'react-router-dom';
 
 
 const ChangePassword = () => {
 
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
  
 
   
@@ -35,7 +37,8 @@ const {mutateAsync,isError,error} = useMutation({
 
   const validationSchema = Yup.object({
 
-      password: Yup.string().required("Password required"),
+      password: Yup.string().required("Password required")
+              .min(3,'Password must be atleast 3 characters'),
       confirmpassword:Yup.string() 
                   .oneOf([Yup.ref('password'), null], 'Passwords must match')
                   .required('Confirm Password is required'),
@@ -58,7 +61,9 @@ console.log("values",values)
 if(data.success){
 
   alert(data.message)
-  dispatch(userPasswordUpdate(data));
+  dispatch(userUpdate(data));
+  navigate('/profile')
+
  
   // resetForm()
 

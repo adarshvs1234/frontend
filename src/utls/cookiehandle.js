@@ -3,7 +3,6 @@ import Cookies from 'js-cookie'
 import { jwtDecode } from 'jwt-decode'
 
 
-
 export const getToken = ()=>{
     return Cookies.get("userData")  
 }

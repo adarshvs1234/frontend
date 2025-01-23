@@ -1,4 +1,4 @@
-import { useMutation, useQuery} from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient} from '@tanstack/react-query';
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { deleteCategortyAPI, fetchCategoryAPI } from '../services/categoryServices';
@@ -6,7 +6,7 @@ import { deleteCategortyAPI, fetchCategoryAPI } from '../services/categoryServic
 const Categorylist = () => {
   const navigate = useNavigate();
 
-   
+  const queryClent = useQueryClient()
     
 
   const { data, isError, isLoading,refetch } = useQuery({
@@ -26,8 +26,11 @@ const Categorylist = () => {
 
     onSuccess: () => {
       refetch();
+      queryClent.invalidateQueries()
     },
 
+
+   
   })
 
 

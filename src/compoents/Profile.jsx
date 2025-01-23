@@ -13,9 +13,8 @@ const Profile = () => {
   const dispatch = useDispatch()
 
 
-
-  const user= useSelector((state)=>state.auth.user.name)
- console.log("presentuser",user) 
+   const user= useSelector((state)=>state.auth.user.name)
+  console.log("presentuser",user) 
 
  
   const handleLogout = () =>{

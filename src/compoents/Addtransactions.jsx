@@ -3,6 +3,7 @@ import * as Yup from 'yup'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 import {  postTransactionAPI } from '../services/transactionServices'
+import { useNavigate } from 'react-router-dom'
 
 
 
@@ -10,6 +11,7 @@ import {  postTransactionAPI } from '../services/transactionServices'
 const AddTransaction = () => {
   
       const queryClent = useQueryClient()
+      const navigate = useNavigate()
    
     const validationSchema = Yup.object({
 
@@ -45,9 +47,10 @@ const AddTransaction = () => {
         .then((data)=>{
 
         console.log(data)
-        alert("Transaction added successfully")
+        //  alert("Transaction added successfully")
         queryClent.invalidateQueries()
         
+        navigate('/')
       //dispatch(addtransaction(data))   
       })
       resetForm();

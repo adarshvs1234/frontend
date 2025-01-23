@@ -3,7 +3,7 @@ import * as Yup from 'yup'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import {  ErrorMessage, Field, Form, Formik } from 'formik'
 import { updateTransactionsAPI } from '../services/transactionServices'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 
 
@@ -11,7 +11,7 @@ import { useParams } from 'react-router-dom'
 const AddTransaction = () => {
 
   const queryClent = useQueryClient()
-  
+  const navigate = useNavigate()
 
   const {id} = useParams()
   console.log("params id",id)
@@ -50,8 +50,9 @@ const AddTransaction = () => {
         .then((data)=>{
         
               console.log("mydata",data)
-              alert('Transaction updated successfully')
+            
               queryClent.invalidateQueries()
+              navigate('/alltransaction')  
             
     })
     resetForm()

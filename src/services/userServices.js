@@ -4,14 +4,14 @@ import { getToken} from "../utls/cookiehandle";
 axios.defaults.withCredentials = true
 
 
-export const loginAPI = async(data)=>{
-        console.log(data);
+ export const loginAPI = async(data)=>{
+         console.log(data);
         
-const response = await axios.post(`${BASE_URL}/user/signin`,data)
-        console.log(response);
+ const response = await axios.post(`${BASE_URL}/user/signin`,data)
+         console.log(response);
         
-        return response.data
-}
+         return response.data
+ }
 
 export const signAPI = async(data)=>{
         console.log("data",data);
@@ -54,5 +54,5 @@ export const changePasswordAPI  = async(data) =>{
                 return response.data
                 
 
-                } 
+        } 
 

@@ -5,8 +5,8 @@ import { useDispatch, useSelector} from 'react-redux'
 import { login } from '../redux/authSlice'
 import { useNavigate } from 'react-router-dom'
 import {jwtDecode} from 'jwt-decode'
-import { useMutation } from '@tanstack/react-query'
-import { loginAPI } from '../services/userServices'
+ import { useMutation } from '@tanstack/react-query'
+ import { loginAPI } from '../services/userServices'
 import Cookies from 'js-cookie'
 
 
@@ -30,10 +30,10 @@ const validationSchema = Yup.object({
 })
 
 
-const {mutateAsync,isError,error} = useMutation({
-  mutationFn: loginAPI,
-  mutationKey: ["login"]
-})
+ const {mutateAsync,isError,error} = useMutation({
+   mutationFn: loginAPI,
+   mutationKey: ["login"]
+ })
 
 const initialValues = {
 
@@ -48,12 +48,13 @@ const initialValues = {
 
     try{
 
-      const token = await mutateAsync(values);
+     const token = await mutateAsync(values);
 
       const data = jwtDecode(token);
-      Cookies.set("userData", token, { expires: 1 });
+      
+        Cookies.set("userData", token, { expires: 1 });
       dispatch(login(data),JSON.stringify(values));
-      alert("Login successful");
+      
       navigate('/')
 
     } catch (error) {

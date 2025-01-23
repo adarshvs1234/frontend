@@ -32,7 +32,8 @@ const authSlice = createSlice({
             state.user = action.payload
         }),
 
-        userNameUpdate : ((state,action) =>{
+        //changed fron usernameupsdat o user update
+        userUpdate : ((state,action) =>{
 
        
 
@@ -41,19 +42,18 @@ const authSlice = createSlice({
           
 }),
 
-         userPasswordUpdate : ((state,action)=>{
+        //  userPasswordUpdate : ((state,action)=>{
 
-           state.user = action.payload
+        //    state.user = action.payload
 
-         })
+        //  })
 
       
        
     }
 })
 
-
-export const {login,logout,signup,userPasswordUpdate,userNameUpdate}  = authSlice.actions
+export const {login,logout,signup,userUpdate}  = authSlice.actions
 export default authSlice.reducer
 
 

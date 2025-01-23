@@ -39,16 +39,14 @@ const initialValues = {
 const handleSubmit = async(values,{resetForm,setFieldError}) =>{
 try{
 const response = await mutateAsync(values);
- const data = jwtDecode(response);
+const data = jwtDecode(response);
  console.log("data",data)
 
- Cookies.set("userData", response, { expires: 1 })
+Cookies.set("userData", data, { expires: 1 })
 
-dispatch(userNameUpdate(data),JSON.stringify(values));
+dispatch(userUpdate(data),JSON.stringify(values));
 alert("Username successfully changed")
 resetForm()
-
-
 }
   
 
