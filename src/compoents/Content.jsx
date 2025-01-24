@@ -159,28 +159,18 @@ const Content = () => {
           </div>
         </div>
 
-      <div className='flex justify-center items-center '>
-          <div className="flex pt-5 pl-2 text-sm pl-9 pb-2 ">
-          <div className="border border-black border-1 h-14 pr-5 pl-2 text-xs xl:text-xl 2xl:text-xl   md:text-sm  font-semibold">
-            Current Balance
-            <div className="text-center pt-1 xl:text-xl 2xl:text-xl">
-              {summarydata?.balance}
-            </div>
-          </div>
-          <div className="border border-black h-13 pl-8 pr-8 text-xs xl:text-xl 2xl:text-xl   md:text-sm   font-semibold">
-            Total Income
-            <div className="text-center pt-1 xl:text-xl 2xl:text-xl">
-              {summarydata?.totalIncome}
-            </div>
-          </div>
-          <div className="border border-black h-13 pl-8 pr-8 text-xs xl:text-xl 2xl:text-xl   md:text-sm   font-semibold">
-            Total Expense
-            <div className="text-center pt-1 xl:text-xl 2xl:text-xl">
-              {summarydata?.totalExpense}
-            </div>
-          </div>
+
+        <div className="  flex justify-center items-center h-6 text-dark mt-3 text-black ml-3 mb-2 mt-2">
+        <div className="text-sm px-9 text-center  xl:text-xl 2xl:text-xl font-semibold md:text-base  ">
+          Representation
         </div>
       </div>
+
+        <div className="pt-3 pb-5 flex justify-center   pt-2">
+        <canvas ref={chartRef} width= {400} height= {200}></canvas>
+      </div>
+
+      
       </div>
 
       
@@ -218,15 +208,8 @@ const Content = () => {
         </div>
       </div>
 
-      <div className="  flex justify-center items-center h-6 text-dark mt-3 text-black ml-3 mb-2 mt-2">
-        <div className="text-sm px-9 text-center md:text-base xl:text-xl 2xl:text-xl  font-semibold pb-2">
-          Representation
-        </div>
-      </div>
-
-      <div className="pt-3 pb-5 flex justify-center   pt-2">
-        <canvas ref={chartRef} width={chartSize.width} height={chartSize.height}></canvas>
-      </div>
+      
+    
     </>
   );
 };

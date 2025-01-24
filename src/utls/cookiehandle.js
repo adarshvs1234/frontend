@@ -12,3 +12,13 @@ export const getToken = ()=>{
 } 
 
 
+
+
+export const getNameToken = ()=>{
+    return Cookies.get("userNameData")  
+}
+
+ export const userNameData = ()=>{
+    return Cookies.get("userNameData")? jwtDecode(Cookies.get("userNameData")):null
+} 
+

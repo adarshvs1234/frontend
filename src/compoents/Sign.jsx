@@ -8,11 +8,13 @@
   import { userData } from '../utls/cookiehandle'
   import { jwtDecode } from 'jwt-decode'
   import { signAPI } from '../services/userServices'
+import { useNavigate } from 'react-router-dom'
 
 
   const Sign = () => {
 
       const dispatch = useDispatch()
+      const navigate = useNavigate()
 
   const validationSchema = Yup.object({
 
@@ -51,9 +53,9 @@
       Cookies.set("userData", token);
     if( dispatch(signup(data)))
     {
-        alert("You have successfully signed up")
-
-    }
+       
+  navigate('/')
+}
       
     resetForm();
       

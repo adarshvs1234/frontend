@@ -3,17 +3,20 @@ import * as Yup from 'yup'
 import { useMutation } from '@tanstack/react-query'
 
 import {jwtDecode}  from 'jwt-decode'
-import { userData } from '../utls/cookiehandle'
+import { userData, userNameData } from '../utls/cookiehandle'
 import Cookies from 'js-cookie'
 import { useDispatch, useSelector } from 'react-redux'
 import { userNameUpdate, userUpdate } from '../redux/authSlice'
 import { changeNameAPI } from '../services/userServices'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
+import { useNavigate } from 'react-router-dom'
 
 const Changename = () => {
 
         const dispatch = useDispatch()
-  
+        const navigate = useNavigate()
+    
+       
 //         const currentname = useSelector((state)=>state.auth.user)
 
 // console.log("currentdata",currentname)
@@ -42,10 +45,13 @@ const response = await mutateAsync(values);
 const data = jwtDecode(response);
  console.log("data",data)
 
-Cookies.set("userData", data, { expires: 2 })
+ console.log("datahi",data.name)
+Cookies.set("userNameData", String(data.name),{ expires: 2 })
+  console.log("cookie updated")
+
 
 dispatch(userUpdate(data),JSON.stringify(values));
-alert("Username successfully changed")
+navigate('/')
 resetForm()
 
 }

@@ -4,6 +4,7 @@ import { logout } from '../redux/authSlice'
 import { useDispatch, useSelector} from 'react-redux'
 import Cookies from 'js-cookie'
 import Loginnavbar from './Loginnavbar'
+import { userData } from '../utls/cookiehandle'
 
 
 
@@ -11,12 +12,18 @@ const Profile = () => {
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const userName =Cookies.get("userNameData");
 
 
-   const user= useSelector((state)=>state.auth.user.name)
-  console.log("presentuser",user) 
+
+  
+
+
+  //  const user= useSelector((state)=>state.auth.user.name)
+  // console.log("presentuser",user) 
 
  
+
   const handleLogout = () =>{
 
     const confirmLogout = window.confirm("Do you want to logout?");
@@ -43,7 +50,7 @@ return (
         <div className='text-center '>
 
        
-      <div  className='lg:text-xl pt-3 mb-4 font-serif hover:underline   pb-2'>Welcome {user}</div>
+      <div  className='lg:text-xl pt-3 mb-4 font-serif hover:underline   pb-2'>Welcome {userName}</div>
       
   
     <div>
