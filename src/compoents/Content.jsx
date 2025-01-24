@@ -153,7 +153,7 @@ const Content = () => {
         <div className="w-full flex justify-end ">
           <div
             className="text-end text-xs mr-2 pl-2 pr-2 border border-black mt-2 w-18 rounded cursor-pointer   md:text-base md:pl-3 md:pb-1  hover:bg-red-100 hover:font-semibold"
-            onClick={() => navigate('/transaction')}
+            onClick={() => navigate('/alltransaction')}
           >
             + Add Transaction
           </div>
@@ -181,9 +181,9 @@ const Content = () => {
         </div>
       </div>
 
-      <div className="flex justify-center pt-3  bg-red-300 md:pb-3">
+      <div className="flex justify-center pt-3  bg-red-300 md:pb-3 cursor-pointer" onClick={()=>navigate('/transaction')}>
         <div className="w-full max-w-6xl">
-          <table className="table-auto border-collapse border-2 border-red-200 text-left mx-auto text-lg">
+          <table className="table-auto border-collapse border-2 border-red-200 text-left mx-auto text-lg ">
             <thead>
               <tr>
                 <th className="border-2 border-black px-4 py-3 text-center md:text-base">Category</th>

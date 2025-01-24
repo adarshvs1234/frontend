@@ -67,6 +67,8 @@ if(data.success){
     // Cookies.set("userPasswordData",JSON.stringify(data),{expires:1})
       navigate('/profile')
 
+
+      
  
   // resetForm()
 
