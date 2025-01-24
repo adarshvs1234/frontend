@@ -40,7 +40,19 @@ const initialValues = {
 
 
 const handleSubmit = async(values,{resetForm,setFieldError}) =>{
-try{
+
+
+  try {
+  
+    const currentName = Cookies.get("userNameData"); 
+   
+    if (currentName === values.newName) {
+      setFieldError("newName", "Username is the same as the previous name"); 
+      return; 
+    }
+
+
+
 const response = await mutateAsync(values);
 const data = jwtDecode(response);
  console.log("data",data)
@@ -48,19 +60,14 @@ const data = jwtDecode(response);
  console.log("datahi",data.name)
 Cookies.set("userNameData", String(data.name),{ expires: 2 })
   console.log("cookie updated")
-
-
 dispatch(userUpdate(data),JSON.stringify(values));
 navigate('/profile')
 resetForm()
-
-}
-  
-
-
-catch (err) {
+}catch (err) {
     console.error('Error:', err);
-if (err.response) {
+
+
+    if (err.response) {
   
 
   const errorMessage = err.response.data.message || 'An error occurred';

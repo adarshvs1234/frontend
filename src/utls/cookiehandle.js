@@ -22,3 +22,15 @@ export const getNameToken = ()=>{
     return Cookies.get("userNameData")? jwtDecode(Cookies.get("userNameData")):null
 } 
 
+
+
+// export const getPasswordToken = ()=>{
+//     return Cookies.get("userPasswordData")  
+// }
+
+//  export const userPasswordData = ()=>{
+//     return Cookies.get("userPasswordData")? jwtDecode(Cookies.get("userPasswordData")):null
+// } 
+
+
+

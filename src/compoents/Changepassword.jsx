@@ -6,7 +6,7 @@ import { Mutation, useMutation } from '@tanstack/react-query';
 
 import { changePasswordAPI } from '../services/userServices';
 import { jwtDecode } from 'jwt-decode';
-import { userData } from '../utls/cookiehandle';
+import { userData, userPasswordData } from '../utls/cookiehandle';
 import { useDispatch, useSelector } from 'react-redux';
 import Cookies from 'js-cookie'
 import { useNavigate } from 'react-router-dom';
@@ -50,7 +50,9 @@ const {mutateAsync,isError,error} = useMutation({
    const  handleSubmit= async(values,{resetForm,setFieldError})=>{
 
 try{
-    console.log("values",values)
+
+ 
+ console.log("values",values)
 
 
 const data = await mutateAsync(values);
@@ -58,8 +60,11 @@ const data = await mutateAsync(values);
     console.log("Response Data:", data);
 console.log("values",values)
 
+
+
 if(data.success){
     dispatch(userUpdate(data));
+    // Cookies.set("userPasswordData",JSON.stringify(data),{expires:1})
       navigate('/profile')
 
  
