@@ -51,7 +51,7 @@ Cookies.set("userNameData", String(data.name),{ expires: 2 })
 
 
 dispatch(userUpdate(data),JSON.stringify(values));
-navigate('/')
+navigate('/profile')
 resetForm()
 
 }

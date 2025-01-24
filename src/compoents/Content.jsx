@@ -52,7 +52,7 @@ const Content = () => {
     staleTime: 300,
   });
 
-  const limitedData = data?.slice(0, 2);
+  const limitedData = data?.slice(0, 1);
 
   useEffect(() => {
     if (summaryDataLoaded && chartRef.current && summarydata) {
@@ -144,7 +144,7 @@ const Content = () => {
   return (
     <>
       <div className=" bg-red-300 border-white border-2 pb-7 ">
-        <div className="mt-2 ml-1 mr-2 justify-between">
+        <div className="mt-2 ml-1 mr-2 justify-between ">
           <div className="font-semibold border-white border-2 w-full text-center h-6 text-sm text-center rounded md:text-base md:mb-2 md:pb-6  bg-red-300    pb-2">
             Dashboard
           </div>
@@ -160,14 +160,14 @@ const Content = () => {
         </div>
 
 
-        <div className="  flex justify-center items-center h-6 text-dark mt-3 text-black ml-3 mb-2 mt-2">
-        <div className="text-sm px-9 text-center  xl:text-xl 2xl:text-xl font-semibold md:text-base  ">
+        <div className="  flex justify-center items-center h-6 text-dark mt-3 text-black ml-3 mb-2 ">
+        <div className="text-sm px-9 text-center  xl:text-xl 2xl:text-xl font-semibold md:text-base  border border-black ">
           Representation
         </div>
       </div>
 
         <div className="pt-3 pb-5 flex justify-center   pt-2">
-        <canvas ref={chartRef} width= {400} height= {200}></canvas>
+        <canvas ref={chartRef} width= {400} height= {162}></canvas>
       </div>
 
       
@@ -176,8 +176,8 @@ const Content = () => {
       
 
       <div className="  flex justify-center items-center h-6 text-dark   md:text-base mb-2 mt-2">
-        <div className="text-sm px-9 text-center  xl:text-xl 2xl:text-xl font-semibold md:text-base  ">
-          Recent Transactions
+        <div className="text-sm px-9 text-center  xl:text-xl 2xl:text-xl font-semibold md:text-base ">
+          Recent Transaction
         </div>
       </div>
 

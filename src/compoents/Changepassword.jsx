@@ -59,10 +59,8 @@ const data = await mutateAsync(values);
 console.log("values",values)
 
 if(data.success){
-
-  alert(data.message)
-  dispatch(userUpdate(data));
-  navigate('/profile')
+    dispatch(userUpdate(data));
+      navigate('/profile')
 
  
   // resetForm()
