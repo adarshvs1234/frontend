@@ -42,11 +42,12 @@ const response = await mutateAsync(values);
 const data = jwtDecode(response);
  console.log("data",data)
 
-Cookies.set("userData", data, { expires: 1 })
+Cookies.set("userData", data, { expires: 2 })
 
 dispatch(userUpdate(data),JSON.stringify(values));
 alert("Username successfully changed")
 resetForm()
+
 }
   
 

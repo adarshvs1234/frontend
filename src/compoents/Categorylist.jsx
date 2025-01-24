@@ -14,8 +14,7 @@ const Categorylist = () => {
     queryKey: ["categorylist"],
     
 
-  
-  });
+});
 
 
   const {mutate,data:itemdata}= useMutation({

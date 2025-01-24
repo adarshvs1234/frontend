@@ -8,8 +8,8 @@ axios.defaults.withCredentials = true
          console.log(data);
         
  const response = await axios.post(`${BASE_URL}/user/signin`,data)
-         console.log(response);
-        
+         //console.log(response);
+         console.log("r",response.data);
          return response.data
  }
 
@@ -17,7 +17,7 @@ export const signAPI = async(data)=>{
         console.log("data",data);
 
         const response = await axios.post(`${BASE_URL}/user/register`,data)
-        console.log(response.data);
+        
         
         return response.data
 }

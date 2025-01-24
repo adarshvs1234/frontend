@@ -49,10 +49,10 @@ const initialValues = {
     try{
 
      const token = await mutateAsync(values);
-
+     console.log("token",token)
       const data = jwtDecode(token);
       
-        Cookies.set("userData", token, { expires: 1 });
+      Cookies.set("userData",token,{ expires: 1 });  //chnage from 1 too 2
       dispatch(login(data),JSON.stringify(values));
       
       navigate('/')
@@ -62,7 +62,6 @@ const initialValues = {
       console.error("Login failed:", error);
       alert("Login failed. Please try again.");
      
-
     }
 
     resetForm()
